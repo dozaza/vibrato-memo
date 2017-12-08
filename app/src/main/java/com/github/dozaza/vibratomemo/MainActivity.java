@@ -2,11 +2,15 @@ package com.github.dozaza.vibratomemo;
 
 import android.app.Service;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,9 +21,13 @@ public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout photoLayout;
 
+    private TextView countDownTextView;
+
     private int imageId = 1;
 
-    private boolean firstTimeSeePhoto = true;
+    private int imageRestSecond = 10;
+
+    private Handler handler = new CountDownTextViewHandler();
 
     RelativeLayout.OnTouchListener OnMainLayoutTouchListener = new RelativeLayout.OnTouchListener() {
 
@@ -29,28 +37,55 @@ public class MainActivity extends AppCompatActivity {
                 hidePhoto();
                 showTouchMe();
             } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                if (firstTimeSeePhoto) {
-                    // 开启一个后台线程，用于计时10秒
-                    mainLayout.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            // 以下为图片在前台展示满10秒之后，才执行的代码
-                            firstTimeSeePhoto = true;
-                            hidePhoto();
-                            showTouchMe();
-                            imageId = getNextImageId(imageId);
-                        }
-                    }, 10 * 1000);
-                }
-
-                firstTimeSeePhoto = false;
                 showPhoto();
                 hideTouchMe();
+
+                if (imageRestSecond == 10) {
+                    // 开启一个线程修改倒计时, 并且在满10秒后切换图片
+                    new Thread(new CountDownChangeThread()).start();
+                }
             }
 
             return true;
         }
     };
+
+    // 更改倒计时
+    private class CountDownChangeThread implements Runnable {
+        @Override
+        public void run() {
+            while(imageRestSecond > 0) {
+                try {
+                    Thread.sleep(1000);
+                    imageRestSecond -= 1;
+                    Message message = new Message();
+                    message.what = imageRestSecond;
+                    handler.sendMessage(message);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private class CountDownTextViewHandler extends Handler {
+        public void handleMessage(Message msg){
+            switch (msg.what) {
+                case 0:
+                    // 表示满了10秒，然后切换图片
+                    hidePhoto();
+                    showTouchMe();
+                    imageId = getNextImageId(imageId);
+                    imageRestSecond = 10;
+                    break;
+                default:
+                    break;
+            }
+            countDownTextView.setText(imageRestSecond + "");
+
+            super.handleMessage(msg);
+        }
+    }
 
     private void showPhoto() {
         if (imageId == 2) {
@@ -110,9 +145,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainLayout = (RelativeLayout) findViewById(R.id.main_layout);
-        touchMeLayout = (RelativeLayout) findViewById(R.id.touch_me);
-        photoLayout = (RelativeLayout) findViewById(R.id.photo);
+        mainLayout = findViewById(R.id.main_layout);
+        touchMeLayout = findViewById(R.id.touch_me);
+        photoLayout = findViewById(R.id.photo);
+        countDownTextView = findViewById(R.id.count_down);
 
         mainLayout.setOnTouchListener(OnMainLayoutTouchListener);
     }

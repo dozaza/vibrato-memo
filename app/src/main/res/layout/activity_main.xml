@@ -36,25 +36,35 @@
             android:layout_height="fill_parent"
             android:visibility="invisible">
 
+            <TextView
+                android:id="@+id/count_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textSize="65px"
+                android:textStyle="bold"
+                />
+
             <RelativeLayout
                 android:id="@+id/photo01"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:visibility="invisible">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_alignParentTop="true"
+                    android:text="Populus maximowiczii"
+                    android:layout_centerInParent="true"
+                    android:textSize="65px"
+                    android:textStyle="bold"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/photo01"
                     />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:text="populus maximowi"
-                    android:layout_centerInParent="true"
-                    android:textSize="65px"
-                    android:textStyle="bold"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -63,19 +73,22 @@
                 android:layout_height="fill_parent"
                 android:visibility="invisible">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="850px"
-                    android:src="@drawable/photo02"
-                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:text="eucalyptus grandis"
+                    android:layout_marginTop="50dp"
+                    android:layout_alignParentTop="true"
+                    android:text="Eucalyptus grandis"
                     android:layout_centerInParent="true"
                     android:textSize="65px"
                     android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="950px"
+                    android:layout_marginBottom="135dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/photo02"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -84,19 +97,22 @@
                 android:layout_height="fill_parent"
                 android:visibility="invisible">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/photo03"
-                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:text="acrocarpus fraxinfolius"
+                    android:layout_marginTop="50dp"
+                    android:layout_alignParentTop="true"
+                    android:text="Acrocarpus fraxinfolius"
                     android:layout_centerInParent="true"
                     android:textSize="65px"
                     android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/photo03"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -105,19 +121,22 @@
                 android:layout_height="fill_parent"
                 android:visibility="invisible">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/photo04"
-                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:text="triticum aestivum linn"
+                    android:layout_marginTop="50dp"
+                    android:layout_alignParentTop="true"
+                    android:text="Triticum aestivum linn"
                     android:layout_centerInParent="true"
                     android:textSize="65px"
                     android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="135dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/photo04"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -126,19 +145,22 @@
                 android:layout_height="fill_parent"
                 android:visibility="invisible">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/photo05"
-                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:text="fraxinus mandshurica"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="50dp"
+                    android:text="Fraxinus mandshurica"
                     android:layout_centerInParent="true"
                     android:textSize="65px"
                     android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="140dp"
+                    android:src="@drawable/photo05"
+                    />
             </RelativeLayout>
         </RelativeLayout>
 
